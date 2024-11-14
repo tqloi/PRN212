@@ -25,11 +25,11 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="128*"/>
-            <RowDefinition Height="15*"/>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="0*"/>
             <RowDefinition Height="53"/>
-            <RowDefinition Height="293*"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="129*"/>
+            <RowDefinition Height="44.04"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
 
         <Label x:Name="label" Content="Order History" Grid.Row="0" FontSize="36" HorizontalAlignment="Center" Width="224"/>
 
-        <DataGrid x:Name="dgOrderHistory" Margin="10,10,10,10" Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderHistory_SelectionChanged" Grid.RowSpan="2">
+        <DataGrid x:Name="dgOrderHistory" Margin="10,0,10,0" Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderHistory_SelectionChanged" Height="182" VerticalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Order ID" Binding="{Binding OrderID}" Width="*"/>
                 <DataGridTextColumn Header="User Name" Binding="{Binding UserOrder.Fullname}" Width="*"/>
@@ -47,30 +47,22 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label x:Name="detailsLabel" Content="Order Details" Grid.Row="2" FontSize="30" HorizontalAlignment="Left" Margin="295,10,0,13" Grid.RowSpan="2" Width="184"/>
+        <Label x:Name="detailsLabel" Content="Order Details" Grid.Row="1" FontSize="30" HorizontalAlignment="Left" Margin="294,175,0,25" Width="184" RenderTransformOrigin="0.477,0.352" Grid.RowSpan="3"/>
 
-        <DataGrid x:Name="dgOrderDetails" Margin="10,10,10,160" Grid.Column="0" Grid.Row="4" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderDetails_SelectionChanged">
+        <DataGrid x:Name="dgOrderDetails" Margin="8,27,10,65" Grid.Column="0" Grid.Row="4" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderDetails_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Plant Name" Binding="{Binding Plant.PlantName}" Width="*"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="*"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat={}{0:C}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="label4" Margin ="22,134,10,99" Content="Services&#xD;&#xA;" Grid.Column="0" Grid.Row="4"/>
-        <ComboBox x:Name="cboService" Margin ="100,134,0,116" Grid.Row="4" HorizontalAlignment="Left" Width="282" />
+        <ComboBox x:Name="cboService" Background="LightGreen" Margin ="107,200,0,0" Grid.Row="4" HorizontalAlignment="Left" Width="282" VerticalAlignment="Top" Height="28" />
 
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="158">
             <Button x:Name="backBtn" Content="Back" Width="158" Height="28" Background="#6C757D" Foreground="White" FontWeight="Bold" BorderBrush="#6C757D" BorderThickness="2" Click="backBtn_Click"/>
         </StackPanel>
-        <DataGrid Grid.Row="4" x:Name="dgServices"  Margin="10,187,10,0" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Plant Name" Binding="{Binding Plant.PlantName}" Width="*"/>
-                <DataGridTextColumn Header="Service" Binding="{Binding CareService.CareServiceName}" Width="*"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
-                <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="*"/>
-            </DataGrid.Columns>
-
-        </DataGrid>
-        <Button x:Name="CreateBtn" Content="Create Service" Background="GreenYellow" HorizontalAlignment="Left" Margin="492,139,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="81" Click="CreateBtn_Click" RenderTransformOrigin="0.47,1.161"/>
+        <Button x:Name="CreateBtn" Content="Create Service" Background="Green" HorizontalAlignment="Left" Margin="480,198,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="122" Click="CreateBtn_Click" RenderTransformOrigin="0.47,1.161"/>
+        <Button x:Name="ViewServiceBtn" Content="View Service" Background="BlueViolet" HorizontalAlignment="Left" Margin="644,199,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="125" Click="ViewServiceBtn_Click" RenderTransformOrigin="0.47,1.161"/>
+        <Label Content="Service Type" HorizontalAlignment="Left" Margin="6,191,0,4" Grid.Row="4" Width="108" FontSize="16" FontWeight="Bold"/>
     </Grid>
 </Window>

@@ -32,7 +32,7 @@ namespace Project_PRN212
         public ObservableCollection<OrderDetail> orderDetails { get; set; }
         public Order? selectedOrder { get; set; }
         public Plant? selectedOrderDetail { get; set; }
-        public ViewOrderWindow(CustomerWindow customerWindow, User user)
+        public ViewOrderWindow(CustomerWindow customerWindow , User user)
         {
             InitializeComponent();
             _user = user;
@@ -46,7 +46,7 @@ namespace Project_PRN212
             _plantService = new PlantService();
             LoadOrderHistory();
             LoadServiceList();
-            LoadCareSchedule();
+            
         }
         public void LoadServiceList()
         {
@@ -124,15 +124,7 @@ namespace Project_PRN212
                 }
             }
         }
-        private void dgServices_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var selected = dgServices.SelectedItem as dynamic;
-            if (selected != null)
-            {
-                selectedOrder = _orderService.GetOrderById(selected.OrderID);
-                LoadOrderDetail();
-            }
-        }
+        
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -181,13 +173,16 @@ namespace Project_PRN212
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error");
             }
         }
-        private void LoadCareSchedule()
-        {
-            var user = _user.UserID;
-            var orders = _careScheduleService.GetCareScheduleByUserID(user);
-            
-            dgServices.ItemsSource = orders;
-        }
 
+        private void ViewServiceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewServiceDetailWindow serviceDetailWindow = new ViewServiceDetailWindow(this, _user);
+
+            // Hiển thị cửa sổ mới
+            serviceDetailWindow.Show();
+
+            // Ẩn hoặc đóng cửa sổ hiện tại nếu không cần giữ nó mở
+            this.Hide();
+        }
     }
 }
