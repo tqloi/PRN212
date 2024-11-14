@@ -1,0 +1,16 @@
+﻿<Window x:Class="Project_PRN212.CustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_PRN212"
+        mc:Ignorable="d"
+        Title="CustomerWindow" Height="450" Width="800">
+    <Grid>
+        <Button Name="profileBtn" Content="Profile" HorizontalAlignment="Left" Height="54" Margin="55,40,0,0" VerticalAlignment="Top" Width="135" Click="profileBtn_Click"/>
+        <Button Name="logoutBtn" Content="Logout" HorizontalAlignment="Left" Height="54" Margin="610,40,0,0" VerticalAlignment="Top" Width="135" Click="Button_Click"/>
+        <Button x:Name="viewProductBtn" Content="View Product" HorizontalAlignment="Left" Height="54" Margin="240,40,0,0" VerticalAlignment="Top" Width="135" Click="viewProductBtn_Click"/>
+        <Button x:Name="viewOrderBtn" Content="View Order" HorizontalAlignment="Left" Height="54" Margin="425,40,0,0" VerticalAlignment="Top" Width="135" Click="viewOrderBtn_Click"/>
+
+    </Grid>
+</Window>

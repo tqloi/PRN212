@@ -1,0 +1,63 @@
+﻿<Window x:Class="Project_PRN212.ViewProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_PRN212"
+        mc:Ignorable="d"
+        Title="ViewProductWindow" Height="630" Width="800" WindowStartupLocation="CenterScreen" 
+        MinHeight="600" MinWidth="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF512F" Offset="0.0" />
+                <GradientStop Color="#DD2476" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderThickness="1" BorderBrush="#CCCCCC" Background="Transparent" CornerRadius="10" Padding="10">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListBox x:Name="LaptopListBox" SelectionMode="Extended" ItemsSource="{Binding Laptop}" Padding="10" Background="Transparent">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="#DDDDDD" CornerRadius="10" Margin="5" Padding="10" HorizontalAlignment="Stretch">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="3"/>
+                                    </Border.Effect>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Width="680">
+                                        <Image Source="{Binding ImageUrl}" Width="100" Height="100" Margin="5"/>
+                                        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding LaptopName}" FontWeight="Bold" Width="250" Margin="5" Foreground="#003366"/>
+                                            <TextBlock Text="{Binding Description}" Margin="5" Width="150" Foreground="#4A4E69"/>
+                                            <TextBlock Text="{Binding Price, StringFormat='{}{0:F3}đ'}" Margin="5" Foreground="#FF9500"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+            <!-- Nút giảm số lượng -->
+            <Button Content="-" Width="40" Height="40" FontWeight="Bold" Background="#FF6B6B" Foreground="White" BorderBrush="Transparent" Margin="5,0" Click="DecreaseQuantityButton_Click"/>
+
+            <!-- Ô hiển thị số lượng -->
+            <TextBlock x:Name="QuantityTextBlock" Text="1" Width="50" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="5,0"/>
+
+            <!-- Nút tăng số lượng -->
+            <Button Content="+" Width="40" Height="40" FontWeight="Bold" Background="#4CAF50" Foreground="White" BorderBrush="Transparent" Margin="5,0" Click="IncreaseQuantityButton_Click"/>
+
+            <!-- Nút mua -->
+            <Button x:Name="buyBtn" Content="Buy" Width="200" Height="40" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderBrush="#007ACC" BorderThickness="2" Margin="10,0" Click="buyBtn_Click"/>
+
+            <!-- Nút quay lại -->
+            <Button Name="backBtn" Content="Back" Width="200" Height="40" Background="#6C757D" Foreground="White" FontWeight="Bold" BorderBrush="#6C757D" BorderThickness="2" Margin="10,0" Click="backBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
