@@ -9,30 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Project_PRN212
 {
     /// <summary>
     /// Interaction logic for OrderManagement.xaml
     /// </summary>
-    public partial class OrderManagement : Window
+    public partial class OrderManagement : UserControl
     {
-        private AdminWindow adminWindow;
+        private AdminWindow adminUserControl;
         private readonly IOrderService _orderService;
         private readonly IOrderDetailService _orderDetailService;
 
         public ObservableCollection<OrderDetail> orderDetails { get; set; }
         public Order? selectedOrder { get; set; }
-        public OrderManagement(AdminWindow adminWindow)
+        public OrderManagement(AdminWindow adminUserControl)
         {
             InitializeComponent();
-            this.adminWindow = adminWindow;
+            this.adminUserControl = adminUserControl;
             _orderService = new OrderService();
             _orderDetailService = new OrderDetailService();
             orderDetails = new ObservableCollection<OrderDetail>();
@@ -76,10 +70,7 @@ namespace Project_PRN212
         }
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            adminWindow.Show();
-        }
-
-        
+            Visibility = Visibility.Hidden;
+        }    
     }
 }

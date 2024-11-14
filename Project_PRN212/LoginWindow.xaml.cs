@@ -57,7 +57,7 @@ namespace Project_PRN212
                     if (user.RoleID == 1)
                     {
                         this.Hide();
-                        new AdminWindow(this).Show();
+                        new AdminWindow(this, user).Show();
                     } 
                     //nếu khác admin
                     else

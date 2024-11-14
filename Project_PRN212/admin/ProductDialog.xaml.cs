@@ -26,25 +26,25 @@ namespace Project_PRN212
 	public partial class ProductDialog : Window
 	{
 		private string selectedImagePath;
-		public Plant Laptop { get; set; }
+		public Plant Plant { get; set; }
 		private readonly IPlantService _service;
 
-		public ProductDialog(Plant? laptop = null)
+		public ProductDialog(Plant? plant = null)
 		{
 			InitializeComponent();
 			_service = new PlantService();
-			Laptop = laptop ?? new Plant();
-			DataContext = Laptop;
+			Plant = plant ?? new Plant();
+			DataContext = Plant;
 
-			if (laptop != null)
+			if (plant != null)
 			{
-				txtLaptopName.Text = laptop.PlantName;
-				txtDescription.Text = laptop.Description;
-				txtPrice.Text = laptop.Price.ToString();
-				txtStock.Text = laptop.Stock.ToString();
-				txtCategoryID.Text = laptop.CategoryID.ToString();
-				cboLaptopStatus.SelectedIndex = laptop.Status ? 0 : 1;
-				SelectedImage.Source = SelectedImage.Source = new BitmapImage(new Uri(laptop.ImageUrl, UriKind.RelativeOrAbsolute));
+				txtPlantName.Text = plant.PlantName;
+				txtDescription.Text = plant.Description;
+				txtPrice.Text = plant.Price.ToString();
+				txtStock.Text = plant.Stock.ToString();
+				txtCategoryID.Text = plant.CategoryID.ToString();
+				cboPlantStatus.SelectedIndex = plant.Status ? 0 : 1;
+				SelectedImage.Source = SelectedImage.Source = new BitmapImage(new Uri(plant.ImageUrl, UriKind.RelativeOrAbsolute));
             }
 		}
 
@@ -52,12 +52,12 @@ namespace Project_PRN212
 		{
 			if (ValidateInputs())
 			{
-				Laptop.PlantName = txtLaptopName.Text;
-				Laptop.Description = txtDescription.Text;
-				Laptop.Price = decimal.Parse(txtPrice.Text);
-				Laptop.Stock = int.Parse(txtStock.Text);
-				Laptop.Status = (cboLaptopStatus.SelectedItem as ComboBoxItem)?.Tag.ToString() == "1" ? true : false;
-				Laptop.CategoryID = int.Parse(txtCategoryID.Text);
+				Plant.PlantName = txtPlantName.Text;
+				Plant.Description = txtDescription.Text;
+				Plant.Price = decimal.Parse(txtPrice.Text);
+				Plant.Stock = int.Parse(txtStock.Text);
+				Plant.Status = (cboPlantStatus.SelectedItem as ComboBoxItem)?.Tag.ToString() == "1" ? true : false;
+				Plant.CategoryID = int.Parse(txtCategoryID.Text);
 				if (!string.IsNullOrEmpty(selectedImagePath))
 				{
 					// Đặt thư mục lưu ảnh (ví dụ: C:\UploadedImages)
@@ -78,7 +78,7 @@ namespace Project_PRN212
 					File.Copy(selectedImagePath, destinationPath, overwrite: true);
 
 					// Cập nhật đường dẫn ảnh trong Plants
-					Laptop.ImageUrl = destinationPath;
+					Plant.ImageUrl = destinationPath;
 					DialogResult = true;
 					Close();
 				}
@@ -95,7 +95,7 @@ namespace Project_PRN212
 		{
 			StringBuilder errorMessage = new StringBuilder();
 
-			if (string.IsNullOrWhiteSpace(txtLaptopName.Text))
+			if (string.IsNullOrWhiteSpace(txtPlantName.Text))
 			{
 				errorMessage.AppendLine("Plants Name is required.");
 			}
@@ -127,7 +127,7 @@ namespace Project_PRN212
 			return true;
 		}
 
-		private void cboLaptopStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void cboPlantStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 
 		}
