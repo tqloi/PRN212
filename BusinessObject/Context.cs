@@ -47,7 +47,7 @@ namespace BusinessObject
             modelBuilder.Entity<OrderDetail>(entity =>
             {
                 entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.OrderID).OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.OrderID).OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.Plant).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.PlantID).OnDelete(DeleteBehavior.ClientSetNull);
@@ -59,10 +59,10 @@ namespace BusinessObject
                 .HasForeignKey(d => d.CareServiceID).OnDelete(DeleteBehavior.ClientSetNull);
 
                 entity.HasOne(d => d.Plant).WithMany(p => p.CareSchedules)
-                .HasForeignKey(d => d.PlantID).OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.PlantID).OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.User).WithMany(p => p.CareSchedules)
-                .HasForeignKey(d => d.UserID).OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.UserID).OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Role>(entity =>

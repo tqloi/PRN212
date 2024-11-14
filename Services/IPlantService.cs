@@ -9,7 +9,7 @@ namespace Services
 {
     public interface IPlantService
     {
-        IEnumerable<Plant> GetAllLaptops();
+        IEnumerable<Plant> GetAllPlants();
         Plant GetPlantById(int id);
         void AddPlant(Plant plant);
         void UpdatePlant(Plant plant);

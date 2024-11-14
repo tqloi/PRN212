@@ -41,7 +41,7 @@ namespace Project_PRN212
 
         private void LoadLaptopInformation()
         {
-            var allLap = _laptopService.GetAllLaptops();
+            var allLap = _laptopService.GetAllPlants();
 
             var availableLaps = allLap
                 .Where(lap => lap.Status)

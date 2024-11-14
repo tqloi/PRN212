@@ -25,7 +25,7 @@ namespace Services
             _plantRepository.DeletePlant(id);
         }
 
-        public IEnumerable<Plant> GetAllLaptops()
+        public IEnumerable<Plant> GetAllPlants()
         {
             return _plantRepository.GetAllPlants();
         }
