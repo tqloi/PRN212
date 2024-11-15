@@ -139,23 +139,30 @@ namespace Project_PRN212
                     {
                         // Parse the selected CareServiceID from the combo box
                         int selectedCareServiceID = int.Parse(cboService.SelectedValue.ToString());
-
-                        // Create a new CareSchedule object
-                        CareSchedule careSchedule = new CareSchedule
+                        DateTime selectedStartDate = datePicker.SelectedDate.Value;
+                        if (selectedStartDate > DateTime.Now.Date.AddDays(1)) 
                         {
-                            PlantID = selectedOrderDetail.PlantID,  // Assuming PlantID is the required property
-                            UserID = _user.UserID,
-                            Status = false,
-                            StartDate = DateTime.Now,
-                            FinishTime = DateTime.Now.AddMonths(1),  // Example: setting finish time 1 month from start
-                            CareServiceID = selectedCareServiceID
-                        };
+                            // Create a new CareSchedule object
+                            CareSchedule careSchedule = new CareSchedule
+                            {
+                                PlantID = selectedOrderDetail.PlantID,  // Assuming PlantID is the required property
+                                UserID = _user.UserID,
+                                Status = false,
+                                StartDate = selectedStartDate,
+                                CareServiceID = selectedCareServiceID
+                            };
 
-                        // Add the care schedule to the database using the service
-                        _careScheduleService.AddCareSchedule(careSchedule);
+                            // Add the care schedule to the database using the service
+                            _careScheduleService.AddCareSchedule(careSchedule);
 
-                        // Show success message
-                        MessageBox.Show("Care schedule created successfully!", "Success");
+                            // Show success message
+                            MessageBox.Show("Care schedule created successfully!", "Success");
+                        }
+                        else 
+                        {
+                            MessageBox.Show("Vui lòng chọn một ngày bắt đầu cách ngày hiện tại ít nhất 1 ngày.", "Ngày không hợp lệ", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    
                     }
                     else
                     {

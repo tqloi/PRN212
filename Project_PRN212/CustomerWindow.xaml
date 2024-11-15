@@ -3,14 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStartupLocation="CenterScreen"
         xmlns:local="clr-namespace:Project_PRN212"
         mc:Ignorable="d"
-        Title="CustomerWindow" Height="450" Width="800">
+        Title="CustomerWindow" Height="450" Width="400">
     <Grid>
-        <Button Name="profileBtn" Style="{StaticResource RoundedButtonStyle}" Content="Profile" HorizontalAlignment="Left" Height="54" Margin="55,40,0,0" VerticalAlignment="Top" Width="135" Click="profileBtn_Click"/>
-        <Button Name="logoutBtn" Style="{StaticResource RoundedButtonStyle}" Content="Logout" HorizontalAlignment="Left" Height="54" Margin="610,40,0,0" VerticalAlignment="Top" Width="135" Click="Button_Click"/>
-        <Button x:Name="viewProductBtn" Style="{StaticResource RoundedButtonStyle}" Content="View Product" HorizontalAlignment="Left" Height="54" Margin="240,40,0,0" VerticalAlignment="Top" Width="135" Click="viewProductBtn_Click"/>
-        <Button x:Name="viewOrderBtn" Style="{StaticResource RoundedButtonStyle}" Content="View Order" HorizontalAlignment="Left" Height="54" Margin="425,40,0,0" VerticalAlignment="Top" Width="135" Click="viewOrderBtn_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,348" Grid.Row="0">
+            <materialDesign:PackIcon Kind="Leaf" Width="40" Height="40" Foreground="Green" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBlock FontWeight="Bold" Text="Plant.gz" FontSize="30" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </StackPanel>
 
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,75,0,0" Height="261">
+            <Button x:Name="viewProductBtn" Style="{StaticResource RoundedButtonStyle}" Content="View Product" Height="40" Width="200" Margin="0,20,0,0" Click="viewProductBtn_Click"/>
+            <Button x:Name="viewOrderBtn" Style="{StaticResource RoundedButtonStyle}" Content="View Order" Height="40" Width="200" Margin="0,20,0,0" Click="viewOrderBtn_Click"/>
+            <Button Name="profileBtn" Style="{StaticResource RoundedButtonStyle}" Content="Profile" Height="40" Width="200" Margin="0,20,0,0" Click="profileBtn_Click"/>
+            <Button Name="logoutBtn" Style="{StaticResource RoundedButtonStyle}" Content="Logout" Height="40" Width="200" Margin="0,20,0,0" Click="Button_Click"/>
+        </StackPanel>
     </Grid>
+
 </Window>
