@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_PRN212"
         mc:Ignorable="d"
-        Title="ViewOrderWindow" Height="625" Width="789" WindowStartupLocation="CenterScreen" 
+        Title="ViewOrderWindow" Height="717" Width="789" WindowStartupLocation="CenterScreen" 
         MinHeight="600" MinWidth="800">
-    <Grid Margin="-5,0,-4,0" RenderTransformOrigin="0.5,0.5">
+    <Grid Margin="-5,0,-4,-3" RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -18,18 +18,17 @@
         </Grid.RenderTransform>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FF512F" Offset="0.0" />
-                <GradientStop Color="#DD2476" Offset="1.0" />
+                <GradientStop Color="#F6F5F8" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="97*"/>
-            <RowDefinition Height="0*"/>
-            <RowDefinition Height="53"/>
-            <RowDefinition Height="129*"/>
-            <RowDefinition Height="44.04"/>
+            <RowDefinition Height="255*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="378*"/>
+            <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -38,7 +37,7 @@
 
         <Label x:Name="label" Content="Order History" Grid.Row="0" FontSize="36" HorizontalAlignment="Center" Width="224"/>
 
-        <DataGrid x:Name="dgOrderHistory" Margin="10,0,10,0" Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderHistory_SelectionChanged" Height="182" VerticalAlignment="Center">
+        <DataGrid x:Name="dgOrderHistory"  BorderBrush="Black" BorderThickness="2" Margin="10,0,10,0" Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderHistory_SelectionChanged" Height="182" VerticalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Order ID" Binding="{Binding OrderID}" Width="*"/>
                 <DataGridTextColumn Header="User Name" Binding="{Binding UserOrder.Fullname}" Width="*"/>
@@ -47,22 +46,31 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label x:Name="detailsLabel" Content="Order Details" Grid.Row="1" FontSize="30" HorizontalAlignment="Left" Margin="294,175,0,25" Width="184" RenderTransformOrigin="0.477,0.352" Grid.RowSpan="3"/>
+        <Label x:Name="detailsLabel" Content="Order Details" Grid.Row="1" FontSize="30" HorizontalAlignment="Left" Margin="305,234,0,0" Width="184" RenderTransformOrigin="0.477,0.352" Grid.RowSpan="2"/>
 
-        <DataGrid x:Name="dgOrderDetails" Margin="8,27,10,65" Grid.Column="0" Grid.Row="4" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderDetails_SelectionChanged">
+        <DataGrid x:Name="dgOrderDetails"  BorderBrush="Black" BorderThickness="2" Margin="8,3,10,172" Grid.Column="0" Grid.Row="3" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderDetails_SelectionChanged" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Plant Name" Binding="{Binding Plant.PlantName}" Width="*"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="*"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat={}{0:C}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="cboService" Background="LightGreen" Margin ="107,200,0,0" Grid.Row="4" HorizontalAlignment="Left" Width="282" VerticalAlignment="Top" Height="28" />
+        <ComboBox x:Name="cboService" Background="LightGreen" Margin ="176,199,0,0" Grid.Row="4" HorizontalAlignment="Left" Width="282" VerticalAlignment="Top" Height="34" SelectionChanged="cboService_SelectionChanged"  />
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="158">
-            <Button x:Name="backBtn" Content="Back" Width="158" Height="28" Background="#6C757D" Foreground="White" FontWeight="Bold" BorderBrush="#6C757D" BorderThickness="2" Click="backBtn_Click"/>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="54" Width="158" Margin="321,250,0,0">
+            <Button x:Name="backBtn" Content="Back" Style="{StaticResource RoundedButtonStyle}"  Width="148" Height="42" Background="#6C757D" Foreground="White" FontWeight="Bold" BorderBrush="#6C757D" BorderThickness="2" Click="backBtn_Click" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="1.56"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.381"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
         </StackPanel>
-        <Button x:Name="CreateBtn" Content="Create Service" Background="Green" HorizontalAlignment="Left" Margin="480,198,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="122" Click="CreateBtn_Click" RenderTransformOrigin="0.47,1.161"/>
-        <Button x:Name="ViewServiceBtn" Content="View Service" Background="BlueViolet" HorizontalAlignment="Left" Margin="644,199,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="125" Click="ViewServiceBtn_Click" RenderTransformOrigin="0.47,1.161"/>
-        <Label Content="Service Type" HorizontalAlignment="Left" Margin="6,191,0,4" Grid.Row="4" Width="108" FontSize="16" FontWeight="Bold"/>
+        <Button x:Name="CreateBtn" Content="Create Service" Style="{StaticResource RoundedButtonStyle}" Background="Green" HorizontalAlignment="Left" Margin="479,198,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="122" Click="CreateBtn_Click" RenderTransformOrigin="0.47,1.161"/>
+        <Button x:Name="ViewServiceBtn" Content="View Service" Style="{StaticResource RoundedButtonStyle}" Background="BlueViolet" HorizontalAlignment="Left" Margin="646,195,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="125" Click="ViewServiceBtn_Click" RenderTransformOrigin="0.47,1.161"/>
+        <Label Content="Care Service Type" HorizontalAlignment="Left" Margin="23,199,0,19" Grid.Row="4" Width="167" FontSize="16" FontWeight="Bold"/>
     </Grid>
 </Window>

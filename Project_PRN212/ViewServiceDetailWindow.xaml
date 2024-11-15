@@ -12,7 +12,7 @@
     
     <Grid>
 
-        <DataGrid x:Name="dgServices"  Margin="10,169,10,0" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="dgServices"  Margin="10,169,10,22" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Plant Name" Binding="{Binding Plant.PlantName}" Width="*"/>
                 <DataGridTextColumn Header="Service" Binding="{Binding CareService.CareServiceName}" Width="*"/>
@@ -22,7 +22,7 @@
 
         </DataGrid>
         <Label Content="Plant Services Detail " HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top" Height="77" Width="404" HorizontalContentAlignment="Center" Background="#FF5CEE17" FontSize="36" FontWeight="Bold"/>
-        <Button Background="red" Content="Back" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Height="43" Width="95" FontWeight="Bold" FontSize="18" Click="Button_Click"/>
+        <Button Background="red" Style="{StaticResource RoundedButtonStyle}" Content="Back" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Height="43" Width="95" FontWeight="Bold" FontSize="18" Click="Button_Click"/>
 
     </Grid>
 </Window>
