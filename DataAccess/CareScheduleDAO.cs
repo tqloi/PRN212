@@ -12,7 +12,10 @@ namespace DataAccess
     {
         public IEnumerable<CareSchedule> GetAllCareSchedules()
         {
-            return _context.CareSchedules.ToList();
+            return _context.CareSchedules
+                .Include(p => p.User)
+                .Include(p => p.Plant)
+                .Include(p => p.CareService).ToList();
             /*return _context.CareSchedules.Include(p => p.Plants).Include(p => p.Orders).ToList();*/
         }
 
@@ -66,6 +69,16 @@ namespace DataAccess
             if (careSchedule != null)
             {
                 _context.CareSchedules.Remove(careSchedule);
+                _context.SaveChanges();
+            }
+        }
+        public void ChangeState(int careScheduleID)
+        {
+            var careSchedule = _context.CareSchedules.SingleOrDefault(p => p.CareScheduleID == careScheduleID);
+            if (careSchedule != null)
+            {
+                careSchedule.FinishTime = careSchedule.FinishTime == null ? DateTime.Now : (DateTime?)null;
+                careSchedule.Status = !careSchedule.Status;
                 _context.SaveChanges();
             }
         }

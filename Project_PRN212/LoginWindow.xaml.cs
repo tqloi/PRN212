@@ -27,7 +27,7 @@ namespace Project_PRN212
             InitializeComponent();
         }
 
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string username = usernameTxt.Text;
             string password = passwordBx.Password;
@@ -73,6 +73,10 @@ namespace Project_PRN212
         {
             this.Hide();
             new RegisterWindow(this).Show();
+        }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

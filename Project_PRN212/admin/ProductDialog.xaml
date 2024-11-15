@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_PRN212"
         mc:Ignorable="d"
-        Title="ProductDialog" Height="468" Width="568">
+        Title="ProductDialog" Height="468" Width="535">
     <Grid Margin="0,0,93,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,7 +26,7 @@
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Plant Information" Grid.Row="0" FontSize="24" Margin="10,10,-175,10" Grid.Column="2"/>
+        <Label Content="Plant Information" Grid.Row="0" FontSize="24" Margin="18,12,-67,8" Grid.Column="2"/>
 
         <Label Content="Plant Name:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,10,0" Grid.ColumnSpan="2"/>
         <TextBox x:Name="txtPlantName" Grid.Row="2" Grid.Column="2" Margin="10,10,-200,10"/>
@@ -52,7 +52,8 @@
         </ComboBox>
 
         <Label Content="Cateogry:" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,10,0" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtCategoryID" Grid.Row="8" Grid.Column="2" Margin="10,10,-200,10"/>
+        <ComboBox x:Name="txtCategoryID" Grid.Row="8" Grid.Column="2" Margin="10,10,-200,10"/>
+
         <StackPanel Grid.Row="9" Orientation="Horizontal" Margin="10,10,-175,21" Grid.Column="2">
             <Button x:Name="btnSave" Content="Save" Margin="0,0,10,0" Click="btnSave_Click" Style="{StaticResource RoundedButtonStyle}" Height="40"/>
             <Button x:Name="btnCancel" Content="Cancel" Click="btnCancel_Click" Style="{StaticResource RoundedButtonStyle}" Height="40" Background="#f7f7f7" Foreground="Black" />

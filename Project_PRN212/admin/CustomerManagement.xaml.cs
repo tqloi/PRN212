@@ -51,9 +51,19 @@ namespace Project_PRN212
             else
             {
                 int userID = Convert.ToInt32((customerIdTxt.Text).Trim());
-                _userService.DeleteUserBasedOnStatus(userID);
-                MessageBox.Show("Delete success!!");
-                loadCustomerData();
+
+                // Kiểm tra role của user
+                int userRole = _userService.GetUserById(userID).RoleID;
+                if (userRole == 1) // Giả sử role = 1 là admin
+                {
+                    MessageBox.Show("Cannot ban this user as they are an admin!");
+                }
+                else
+                {
+                    _userService.DeleteUserBasedOnStatus(userID);
+                    MessageBox.Show("Action successful!!");
+                    loadCustomerData();
+                }
             }
         }
     }

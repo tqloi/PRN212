@@ -48,5 +48,9 @@ namespace Services
         {
             _careScheduleRepository.UpdateCareSchedule(careSchedule);
         }
+        public void ChangeState(int careSchedule)
+        {
+            _careScheduleRepository.ChangeState(careSchedule);
+        }
     }
 }

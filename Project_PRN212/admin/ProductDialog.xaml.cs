@@ -28,27 +28,38 @@ namespace Project_PRN212
 		private string selectedImagePath;
 		public Plant Plant { get; set; }
 		private readonly IPlantService _service;
-
-		public ProductDialog(Plant? plant = null)
+        private readonly ICategoryService _categoryService;
+		
+        public ProductDialog(Plant? plant = null)
 		{
 			InitializeComponent();
 			_service = new PlantService();
-			Plant = plant ?? new Plant();
+            _categoryService = new CategoryService();
+            Plant = plant ?? new Plant();
 			DataContext = Plant;
+            LoadCategories();
 
-			if (plant != null)
+            if (plant != null)
 			{
 				txtPlantName.Text = plant.PlantName;
 				txtDescription.Text = plant.Description;
 				txtPrice.Text = plant.Price.ToString();
 				txtStock.Text = plant.Stock.ToString();
-				txtCategoryID.Text = plant.CategoryID.ToString();
-				cboPlantStatus.SelectedIndex = plant.Status ? 0 : 1;
-				SelectedImage.Source = SelectedImage.Source = new BitmapImage(new Uri(plant.ImageUrl, UriKind.RelativeOrAbsolute));
+                txtCategoryID.SelectedItem = plant.Category;
+                cboPlantStatus.SelectedIndex = plant.Status ? 0 : 1;
+				if (plant.ImageUrl != null)
+				{
+					SelectedImage.Source = SelectedImage.Source = new BitmapImage(new Uri(plant.ImageUrl, UriKind.RelativeOrAbsolute));
+				}
             }
 		}
-
-		private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void LoadCategories()
+        {
+            var categories = _categoryService.GetAllCategories(); 
+            txtCategoryID.ItemsSource = categories;
+            txtCategoryID.DisplayMemberPath = "CategoryName"; 
+        }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
 		{
 			if (ValidateInputs())
 			{

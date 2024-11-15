@@ -42,5 +42,9 @@ namespace Repository
         {
             CareScheduleDAO.Instance.UpdateCareSchedule(careSchedule);
         }
+        public void ChangeState(int careSchedule)
+        {
+            CareScheduleDAO.Instance.ChangeState(careSchedule);
+        }
     }
 }
