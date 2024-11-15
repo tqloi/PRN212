@@ -55,9 +55,10 @@
                 <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat={}{0:C}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="cboService" Background="LightGreen" Margin ="176,199,0,0" Grid.Row="4" HorizontalAlignment="Left" Width="282" VerticalAlignment="Top" Height="34" SelectionChanged="cboService_SelectionChanged"  />
+        <ComboBox x:Name="cboService" Background="LightGreen" Margin ="135,197,0,0" Grid.Row="4" HorizontalAlignment="Left" Width="136" VerticalAlignment="Top" Height="24" SelectionChanged="cboService_SelectionChanged"  />
+        <DatePicker x:Name="datePicker" Margin="136,232,0,0" Grid.Row="4" HorizontalAlignment="Left" Width="137" VerticalAlignment="Top" Height="24" />
 
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="54" Width="158" Margin="321,250,0,0">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="54" Width="158" Margin="622,264,0,0">
             <Button x:Name="backBtn" Content="Back" Style="{StaticResource RoundedButtonStyle}"  Width="148" Height="42" Background="#6C757D" Foreground="White" FontWeight="Bold" BorderBrush="#6C757D" BorderThickness="2" Click="backBtn_Click" RenderTransformOrigin="0.5,0.5">
                 <Button.RenderTransform>
                     <TransformGroup>
@@ -69,8 +70,9 @@
                 </Button.RenderTransform>
             </Button>
         </StackPanel>
-        <Button x:Name="CreateBtn" Content="Create Service" Style="{StaticResource RoundedButtonStyle}" Background="Green" HorizontalAlignment="Left" Margin="479,198,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="122" Click="CreateBtn_Click" RenderTransformOrigin="0.47,1.161"/>
-        <Button x:Name="ViewServiceBtn" Content="View Service" Style="{StaticResource RoundedButtonStyle}" Background="BlueViolet" HorizontalAlignment="Left" Margin="647,198,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Width="125" Click="ViewServiceBtn_Click" RenderTransformOrigin="0.47,1.161"/>
-        <Label Content="Care Service Type" HorizontalAlignment="Left" Margin="23,199,0,19" Grid.Row="4" Width="167" FontSize="16" FontWeight="Bold"/>
+        <Button x:Name="CreateBtn" Content="Create Schedule" Style="{StaticResource RoundedButtonStyle}" Background="Green" HorizontalAlignment="Left" Margin="135,272,0,0" Grid.Row="4" VerticalAlignment="Top" Height="41" Width="138" Click="CreateBtn_Click" RenderTransformOrigin="0.47,1.161"/>
+        <Button x:Name="ViewServiceBtn" Content="View Service" Style="{StaticResource RoundedButtonStyle}" Background="BlueViolet" HorizontalAlignment="Left" Margin="628,206,0,0" Grid.Row="4" VerticalAlignment="Top" Height="42" Width="147" Click="ViewServiceBtn_Click" RenderTransformOrigin="0.47,1.161"/>
+        <Label Content="Service Type" HorizontalAlignment="Left" Margin="12,193,0,119" Grid.Row="4" Width="111" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="12,230,0,73" Grid.Row="4" Width="113" FontSize="16" FontWeight="Bold"/>
     </Grid>
 </Window>
