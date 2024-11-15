@@ -61,14 +61,18 @@ namespace Project_PRN212
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
 		{
-			if (ValidateInputs())
+            string categoryName = txtCategoryID.Text.Trim();
+            var category = _categoryService.GetAllCategories()
+							.FirstOrDefault(c => c.CategoryName.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
+
+            if (ValidateInputs())
 			{
 				Plant.PlantName = txtPlantName.Text;
 				Plant.Description = txtDescription.Text;
 				Plant.Price = decimal.Parse(txtPrice.Text);
 				Plant.Stock = int.Parse(txtStock.Text);
 				Plant.Status = (cboPlantStatus.SelectedItem as ComboBoxItem)?.Tag.ToString() == "1" ? true : false;
-				Plant.CategoryID = int.Parse(txtCategoryID.Text);
+				Plant.CategoryID = category.CategoryID;
 				if (!string.IsNullOrEmpty(selectedImagePath))
 				{
 					// Đặt thư mục lưu ảnh (ví dụ: C:\UploadedImages)

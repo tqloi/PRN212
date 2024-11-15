@@ -34,5 +34,13 @@ namespace Repository
         {
             PlantDAO.Instance.UpdatePlant(plant);
         }
+        public IEnumerable<Plant> SearchByKeyword(string keyword)
+        {
+            return PlantDAO.Instance.SearchByKeyword(keyword);
+        }
+        public IEnumerable<Plant> FilterByPrice(decimal minPrice, decimal maxPrice)
+        {
+            return PlantDAO.Instance.FilterByPrice(minPrice, maxPrice);
+        }
     }
 }

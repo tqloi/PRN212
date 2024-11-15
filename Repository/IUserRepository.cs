@@ -16,5 +16,6 @@ namespace Repository
         void DeleteUser(int id);
         void DeleteUserBasedOnStatus(int id);
         User GetUserByUserNameAndPassword(string userName, string password);
+        IEnumerable<User> SearchByKeyword(string keyword);
     }
 }

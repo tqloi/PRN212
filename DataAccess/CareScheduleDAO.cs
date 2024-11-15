@@ -82,5 +82,32 @@ namespace DataAccess
                 _context.SaveChanges();
             }
         }
+        public IEnumerable<CareSchedule> SearchByKeyword(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return Enumerable.Empty<CareSchedule>();
+            }
+
+            // Tạo một đối tượng DateTime để so sánh với ngày tháng
+            DateTime keywordDate;
+            bool isDate = DateTime.TryParseExact(keyword, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out keywordDate);
+
+            // Tìm kiếm trong CareService, Plant, User, và ngày tháng
+            var careSchedules = _context.CareSchedules
+                .Include(p => p.User)
+                .Include(p => p.Plant)
+                .Include(p => p.CareService)
+                .Where(p => EF.Functions.Like(p.CareService.CareServiceName, $"%{keyword}%") ||
+                            EF.Functions.Like(p.Plant.PlantName, $"%{keyword}%") ||
+                            EF.Functions.Like(p.User.Fullname, $"%{keyword}%") ||
+                            EF.Functions.Like(p.User.Email, $"%{keyword}%") ||
+                            (isDate && p.StartDate.Date == keywordDate.Date) || // So sánh ngày bắt đầu
+                            (p.FinishTime.HasValue && isDate && p.FinishTime.Value.Date == keywordDate.Date))  // So sánh ngày kết thúc
+                .ToList();
+
+            return careSchedules;
+        }
+
     }
 }

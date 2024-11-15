@@ -44,7 +44,13 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-
+        <StackPanel Orientation="Horizontal" Margin="22,10,418,711" Grid.Row="1">
+            <!-- TextBox for search input -->
+            <TextBox x:Name="SearchTextBox" Width="200" Height="30" Margin="0,0,10,0" 
+            VerticalAlignment="Center"  />
+            <Button x:Name="SearchButton"  Content="Search" Width="80" Height="30" 
+           Click="SearchButton_Click" />
+        </StackPanel>
         <!-- Fixed Buttons at the bottom for user management -->
         <TextBox Name="customerIdTxt" HorizontalAlignment="Left" Height="20" Margin="243,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="277" Visibility="Collapsed" Grid.Row="1"/>
         <Button x:Name="DeleteUserButton" Content="Ban/Unban User" Style="{StaticResource RoundedButtonStyle}"  Width="142" Height="40" Margin="578,0,0,0" RenderTransformOrigin="0.83,0.487" HorizontalAlignment="Left" Click="DeleteUserButton_Click" VerticalAlignment="Top" Grid.Row="1"/>

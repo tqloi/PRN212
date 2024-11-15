@@ -59,5 +59,22 @@ namespace DataAccess
         {
             return _context.Users.SingleOrDefault(p => p.UserName.Equals(userName) && p.Password.Equals(password));
         }
+        public IEnumerable<User> SearchByKeyword(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return Enumerable.Empty<User>(); // Nếu không có từ khóa, trả về danh sách rỗng
+            }
+
+            var users = _context.Users
+                .Where(u => EF.Functions.Like(u.UserName, "%" + keyword + "%") ||  // Tìm kiếm trong tên người dùng
+                            EF.Functions.Like(u.Email, "%" + keyword + "%") ||     // Tìm kiếm trong email
+                            EF.Functions.Like(u.Phone, "%" + keyword + "%")        // Tìm kiếm trong số điện thoại
+                )
+                .ToList(); // Tải kết quả về
+
+            return users;
+        }
+
     }
 }

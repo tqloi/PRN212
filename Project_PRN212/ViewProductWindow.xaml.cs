@@ -24,7 +24,7 @@ namespace Project_PRN212
         private int quantity = 1;
         private User _user;
         private CustomerWindow _customerWindow;
-        private readonly IPlantService _laptopService;
+        private readonly IPlantService _plantService;
         private readonly IOrderService _orderService;
         private readonly IOrderDetailService _orderDetailService;
 
@@ -33,7 +33,7 @@ namespace Project_PRN212
             InitializeComponent();
             _customerWindow = customerWindow;
             _user = user;
-            _laptopService = new PlantService();
+            _plantService = new PlantService();
             _orderService = new OrderService();
             _orderDetailService = new OrderDetailService();
             LoadLaptopInformation();
@@ -41,13 +41,13 @@ namespace Project_PRN212
 
         private void LoadLaptopInformation()
         {
-            var allLap = _laptopService.GetAllPlants();
+            var allLap = _plantService.GetAllPlants();
 
             var availableLaps = allLap
                 .Where(lap => lap.Status)
                 .ToList();
 
-            LaptopListBox.ItemsSource = availableLaps;
+            PlantListBox.ItemsSource = availableLaps;
         }
 
         private void DecreaseQuantityButton_Click(object sender, RoutedEventArgs e)
@@ -71,7 +71,7 @@ namespace Project_PRN212
 
         private void buyBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selected = LaptopListBox.SelectedItems.Cast<Plant>().ToList();
+            var selected =PlantListBox.SelectedItems.Cast<Plant>().ToList();
             if (selected.Count == 0)
             {
                 MessageBox.Show("Please select product.", "No Plants Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -111,7 +111,7 @@ namespace Project_PRN212
                 _orderDetailService.AddOrderDetail(orderDetail);
                 lap.Stock -= Convert.ToInt32(QuantityTextBlock.Text);
                 if (lap.Stock == 0) lap.Status = false;
-                _laptopService.UpdatePlant(lap);
+                _plantService.UpdatePlant(lap);
                 MessageBox.Show("Orders successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -121,5 +121,64 @@ namespace Project_PRN212
             this.Close();
             _customerWindow.Show();
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Lấy giá trị từ ô tìm kiếm (TextBox)
+            string keyword = SearchTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Please enter a search keyword.");
+                return;
+            }
+
+            var results = _plantService.SearchByKeyword(keyword);
+
+            if (results.Any())
+            {
+                PlantListBox.ItemsSource = results;
+            }
+            else
+            {
+                MessageBox.Show("No results found.");
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            decimal minPrice, maxPrice;
+
+            // Kiểm tra xem giá trị có hợp lệ không (là số)
+            bool isMinPriceValid = decimal.TryParse(MinPriceTextBox.Text, out minPrice);
+            bool isMaxPriceValid = decimal.TryParse(MaxPriceTextBox.Text, out maxPrice);
+
+            // Nếu giá trị hợp lệ, kiểm tra maxPrice phải lớn hơn minPrice
+            if (isMinPriceValid && isMaxPriceValid)
+            {
+                if (maxPrice < minPrice)
+                {
+                    MessageBox.Show("Max price must be greater than Min price.");
+                }
+                else
+                {
+                    var results = _plantService.FilterByPrice(minPrice, maxPrice);
+
+                    if (results.Any())
+                    {
+                        PlantListBox.ItemsSource = results;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No results found.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter valid price values.");
+            }
+        }
+
     }
 }

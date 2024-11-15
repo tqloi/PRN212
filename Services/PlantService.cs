@@ -1,4 +1,5 @@
 ﻿using BusinessObject.Model;
+using DataAccess;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,14 @@ namespace Services
         public void UpdatePlant(Plant plant)
         {
             _plantRepository.UpdatePlant(plant);
+        }
+        public IEnumerable<Plant> SearchByKeyword(string keyword)
+        {
+            return _plantRepository.SearchByKeyword(keyword);
+        }
+        public IEnumerable<Plant> FilterByPrice(decimal minPrice, decimal maxPrice)
+        {
+            return _plantRepository.FilterByPrice(minPrice, maxPrice);
         }
     }
 }

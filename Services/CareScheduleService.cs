@@ -52,5 +52,9 @@ namespace Services
         {
             _careScheduleRepository.ChangeState(careSchedule);
         }
+        public IEnumerable<CareSchedule> SearchByKeyword(string keyword)
+        {
+            return _careScheduleRepository.SearchByKeyword(keyword);
+        }
     }
 }
