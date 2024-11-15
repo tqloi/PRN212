@@ -18,5 +18,6 @@ namespace Services
         void UpdateCareSchedule(CareSchedule orderDetail);
         void DeleteCareSchedule(int careScheduleID);
         void ChangeState(int careScheduleID);
+        IEnumerable<CareSchedule> SearchByKeyword(string keyword);
     }
 }

@@ -124,5 +124,28 @@ namespace Project_PRN212
 				loadPlantData();
 			}
 		}
-	}
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Lấy giá trị từ ô tìm kiếm (TextBox)
+            string keyword = SearchTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Please enter a search keyword.");
+                return;
+            }
+
+            var results = _plantService.SearchByKeyword(keyword);
+
+            if (results.Any())
+            {
+                PlantDataGrid.ItemsSource = results;
+            }
+            else
+            {
+                MessageBox.Show("No results found.");
+            }
+        }
+    }
 }

@@ -15,5 +15,6 @@ namespace Services
         void AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(int id);
+        IEnumerable<Order> SearchByKeyword(string keyword);
     }
 }

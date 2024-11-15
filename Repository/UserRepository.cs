@@ -44,5 +44,9 @@ namespace Repository
         {
             UserDAO.Instance.UpdateUser(user);
         }
+        public IEnumerable<User> SearchByKeyword(string keyword)
+        {
+            return UserDAO.Instance.SearchByKeyword(keyword);
+        }
     }
 }

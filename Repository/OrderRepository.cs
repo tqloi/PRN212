@@ -39,5 +39,9 @@ namespace Repository
         {
             OrderDAO.Instance.UpdateOrder(order);
         }
+        public IEnumerable<Order> SearchByKeyword(string keyword)
+        {
+            return OrderDAO.Instance.SearchByKeyword(keyword);
+        }
     }
 }

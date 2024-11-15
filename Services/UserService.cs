@@ -48,5 +48,9 @@ namespace Services
         {
             _userRepository.UpdateUser(user);
         }
+        public IEnumerable<User> SearchByKeyword(string keyword)
+        {
+            return _userRepository.SearchByKeyword(keyword);
+        }
     }
 }

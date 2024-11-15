@@ -53,5 +53,24 @@ namespace DataAccess
                 _context.SaveChanges();
             }
         }
+        public IEnumerable<Order> SearchByKeyword(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return Enumerable.Empty<Order>();
+            }
+
+            var orders = _context.Orders
+                .Include(o => o.UserOrder)  // Bao gồm thông tin người dùng
+                .AsEnumerable()  // Chuyển dữ liệu về client (dữ liệu đã được tải từ DB)
+                .Where(o => o.UserOrder.Fullname.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                            o.UserOrder.Email.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                            (o.DateOrder.HasValue && o.DateOrder.Value.ToString("yyyy-MM-dd").Contains(keyword)) ||  // Chuyển đổi ngày thành chuỗi ở client
+                            o.OrderID.ToString().Contains(keyword))
+                .ToList();
+
+            return orders;
+        }
+
     }
 }

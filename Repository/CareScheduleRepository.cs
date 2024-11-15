@@ -46,5 +46,9 @@ namespace Repository
         {
             CareScheduleDAO.Instance.ChangeState(careSchedule);
         }
+        public IEnumerable<CareSchedule> SearchByKeyword(string keyword)
+        {
+            return CareScheduleDAO.Instance.SearchByKeyword(keyword);
+        }
     }
 }

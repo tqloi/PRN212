@@ -44,5 +44,9 @@ namespace Services
         {
             _orderRepository.UpdateOrder(order);
         }
+        public IEnumerable<Order> SearchByKeyword(string keyword)
+        {
+            return _orderRepository.SearchByKeyword(keyword);
+        }
     }
 }

@@ -14,5 +14,7 @@ namespace Services
         void AddPlant(Plant plant);
         void UpdatePlant(Plant plant);
         void DeletePlant(int id);
+        IEnumerable<Plant> SearchByKeyword(string keyword);
+        IEnumerable<Plant> FilterByPrice(decimal minPrice, decimal maxPrice);
     }
 }
