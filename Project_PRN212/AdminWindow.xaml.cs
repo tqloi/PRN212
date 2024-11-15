@@ -79,7 +79,8 @@ namespace Project_PRN212
 
         private void btn_CareManagement(object sender, RoutedEventArgs e)
         {
-
+            RenderPages.Children.Clear();
+            RenderPages.Children.Add(new CareManagement());
         }
 
         private void btn_Profile(object sender, RoutedEventArgs e)

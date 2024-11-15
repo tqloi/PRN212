@@ -17,5 +17,6 @@ namespace Repository
         void AddCareSchedule(CareSchedule orderDetail);
         void UpdateCareSchedule(CareSchedule orderDetail);
         void DeleteCareSchedule(int careScheduleID);
+        void ChangeState(int careScheduleID);
     }
 }

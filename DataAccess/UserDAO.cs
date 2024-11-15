@@ -50,7 +50,7 @@ namespace DataAccess
             var user = _context.Users.Find(id);
             if(user != null)
             {
-                user.Status = false;
+                user.Status = !user.Status;
                 _context.SaveChanges();
             }
         }

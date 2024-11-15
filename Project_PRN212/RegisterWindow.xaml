@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_PRN212"
         mc:Ignorable="d"
-        Title="ProfileWindow" Height="630" Width="800" WindowStartupLocation="CenterScreen" 
+        Title="ProfileWindow" Height="653" Width="800" WindowStartupLocation="CenterScreen" 
         MinHeight="600" MinWidth="800">
 
-    <Grid>
+    <Grid Margin="0,0,0,-13">
         <!-- Đặt nền cho Grid bằng LinearGradientBrush -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FF512F" Offset="0.0" />
-                <GradientStop Color="#DD2476" Offset="1.0" />
+                <GradientStop Color="#FFFFFF" Offset="0"/>
+                <!-- Màu trắng -->
+                <GradientStop Color="#F0F0F0" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -43,12 +44,12 @@
                 <TextBox Name="addressTxt" Height="60" Margin="0,5,0,10" BorderBrush="Gray" BorderThickness="1" Padding="5" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
 
                 <!-- Nút Save và Quay lại -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,20,20,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,20,20,0" Width="496">
                     <!-- Nút Save -->
-                    <Button Name="regisBtn" Content="Register" Width="200" Height="40" Margin="5" Background="DodgerBlue" Foreground="White" FontWeight="Bold" Click="regisBtn_Click"/>
+                    <Button Name="regisBtn" Style="{StaticResource RoundedButtonStyle}" Content="Register" Width="200" Height="40"  Margin="30,0,30,0" Foreground="White" FontWeight="Bold" Click="regisBtn_Click"/>
+                    <Button x:Name="backBtn" Style="{StaticResource RoundedButtonStyle}" Content="Back" Width="200" Height="40" Background="Gray" Foreground="White" FontWeight="Bold" Click="BackButton_Click"/>
 
                     <!-- Nút Quay lại -->
-                    <Button Name="backBtn" Content="Back" Width="200" Height="40" Margin="5" Background="Gray" Foreground="White" FontWeight="Bold" Click="BackButton_Click"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

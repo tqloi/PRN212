@@ -3,36 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Project_PRN212"
         mc:Ignorable="d"
         d:DesignHeight="850" d:DesignWidth="740">
-    <UserControl.Resources>
-        <!-- Style chung cho các nút -->
-        <Style TargetType="Button" x:Key="RoundedButtonStyle">
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Background" Value="#FF6A6A"/>
-            <Setter Property="BorderBrush" Value="#FF6A6A"/>
-            <!-- Bo tròn góc nút -->
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-
-            <!-- Hiệu ứng khi di chuột và nhấn -->
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FF4C4C"/>
-                    <!-- Màu khi di chuột -->
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#FF3030"/>
-                    <!-- Màu khi nhấn -->
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -41,17 +15,22 @@
         </Grid.Background>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="343*"/>
+            <RowDefinition Height="42"/>
+            <RowDefinition Height="380*"/>
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="Label" Content="Order Management" Grid.Row="0" FontSize="36" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="24,18,0,17" Width="217">
+            <materialDesign:PackIcon Kind="Receipt" Width="24" Height="24"  VerticalAlignment="Center" />
+            <TextBlock  FontWeight="Bold" Text="Oders Management" FontSize="18" Margin="15,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
 
         <!-- Orders Data Grid with adjusted column widths -->
-        <DataGrid x:Name="dgOrderManagement" Margin="10" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderManagement_SelectionChanged">
+        <DataGrid x:Name="dgOrderManagement" Margin="16,0,24,20" Grid.Row="1" 
+                  BorderBrush="Black" BorderThickness="2" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgOrderManagement_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Order ID" Binding="{Binding OrderID}" Width="*"/>
                 <DataGridTextColumn Header="User Name" Binding="{Binding UserOrder.Fullname}" Width="*"/>
@@ -60,17 +39,17 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label x:Name="detailsLabel" Content="Order Details" Grid.Row="2" FontSize="24" HorizontalAlignment="Center" Margin="0,-1,0,0"/>
+        <Label x:Name="detailsLabel" Content="Order Details" Grid.Row="2" FontSize="18" HorizontalAlignment="Left" Margin="19,4,0,3" Width="148"/>
 
         <!-- Order Details Data Grid with adjusted column widths -->
-        <DataGrid x:Name="dgViewOrderDetails" Margin="10,5,10,5" Grid.Row="3" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="dgViewOrderDetails" Margin="17,3,23,50" Grid.Row="3" 
+                   BorderBrush="Black" BorderThickness="2" 
+                  AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Laptop Name" Binding="{Binding Laptop.LaptopName}" Width="*"/>
+                <DataGridTextColumn Header="Plant Name" Binding="{Binding Plant.PlantName}" Width="*"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="*"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat={}{0:C}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button x:Name="backBtn" Content="Back" Style="{StaticResource RoundedButtonStyle}" BorderThickness="2" Click="backBtn_Click" Height="30" Width="80" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

@@ -12,8 +12,8 @@ namespace DataAccess
     {
         public IEnumerable<Plant> GetAllPlants()
         {
-            return _context.Plants.ToList();
-            /*return _context.Plants.Include(p => p.Category).ToList();*/
+            //return _context.Plants.ToList();
+            return _context.Plants.Include(p => p.Category).ToList();
         }
 
         public Plant GetPlantById(int id)

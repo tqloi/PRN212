@@ -3,37 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Project_PRN212"
         mc:Ignorable="d"
         Loaded="UserControl_Loaded"
         d:DesignHeight="850" d:DesignWidth="740">
-    <UserControl.Resources>
-        <!-- Style chung cho các nút -->
-        <Style TargetType="Button" x:Key="RoundedButtonStyle">
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Background" Value="#FF6A6A"/>
-            <Setter Property="BorderBrush" Value="#FF6A6A"/>
-            <!-- Bo tròn góc nút -->
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-
-            <!-- Hiệu ứng khi di chuột và nhấn -->
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FF4C4C"/>
-                    <!-- Màu khi di chuột -->
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#FF3030"/>
-                    <!-- Màu khi nhấn -->
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -41,28 +15,32 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="80"/>
             <!-- Title row -->
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
             <!-- DataGrid row, takes remaining space -->
             <RowDefinition Height="Auto"/>
             <!-- Buttons row -->
         </Grid.RowDefinitions>
 
         <!-- Title -->
-        <TextBlock Text="Plant Management" FontSize="24" HorizontalAlignment="Center" Margin="0,5,0,5" Grid.Row="0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="24,18,0,17" Width="217">
+            <materialDesign:PackIcon Kind="Tree" Width="24" Height="24"  VerticalAlignment="Center" />
+            <TextBlock  FontWeight="Bold" Text="Plants Management" FontSize="18" Margin="15,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
 
         <!-- DataGrid for displaying user list within a ScrollViewer to prevent stretching -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1">
-            <DataGrid x:Name="PlantDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Width="748" Height="317" Margin="0,10,0,10" SelectionChanged="PlantDataGrid_SelectionChanged">
+            <DataGrid x:Name="PlantDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"  BorderBrush="Black" BorderThickness="2"
+                      Width="700" Height="650" Margin="0,10,0,10" SelectionChanged="PlantDataGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="PlantID" Binding="{Binding PlantID}"/>
-                    <DataGridTemplateColumn Header="PlantName">
+                    <DataGridTextColumn Header="Name" Binding="{Binding PlantName}"/>
+                    <DataGridTemplateColumn Header="Image">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageUrl}" Width="30" Height="30" Margin="0,0,5,0"/>
-                                    <TextBlock Text="{Binding PlantName}" VerticalAlignment="Center"/>
+                                    <Image Source="{Binding ImageUrl}" Width="40" Height="40" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -70,18 +48,18 @@
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
                     <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
-                    <DataGridTextColumn Header="Category" Binding="{Binding CategoryID}"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category.CategoryName}"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
 
         <!-- Fixed Buttons at the bottom for user management -->
-        <TextBox Name="PlantIdTxt" HorizontalAlignment="Left" Height="20" Margin="243,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="277" Visibility="Collapsed"/>
-        <Button x:Name="btnCreate" Content="Create"  Style="{StaticResource RoundedButtonStyle}" Background="#FF0099FF" BorderBrush="White" Foreground="White" Margin="130,32,568,374" Click="btnCreate_Click" Grid.RowSpan="2"/>
-        <Button x:Name="btnUpdate" Content="Update"  Style="{StaticResource RoundedButtonStyle}" Background="#FF1B7140" Foreground="White" Margin="568,32,122,372" Click="btnUpdate_Click" Grid.RowSpan="2"/>
-        <Button x:Name="DeletePlantButton" Content="Delete" Style="{StaticResource RoundedButtonStyle}" Width="80" Height="30" Margin="0,32,25,0" RenderTransformOrigin="0.83,0.487" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="2" Click="DeletePlantButton_Click"/>
-        <Button x:Name="BackButton"  Content="Back" Style="{StaticResource RoundedButtonStyle}" Margin="27,32,0,0" Click="backBtn_Click" RenderTransformOrigin="-1.997,0.353" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2" />
+        <TextBox Name="PlantIdTxt" HorizontalAlignment="Left" Height="20" Margin="243,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="277" Visibility="Collapsed" Grid.Row="1"/>
+
+        <Button x:Name="btnCreate" Content="Create"  Style="{StaticResource RoundedButtonStyle}" Background="#FF0099FF" BorderBrush="White" Foreground="White" Click="btnCreate_Click" Height="40" Width="100" HorizontalAlignment="Left" Margin="389,0,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button x:Name="btnUpdate" Content="Update"  Style="{StaticResource RoundedButtonStyle}" Background="#FF1B7140" Foreground="White" Click="btnUpdate_Click" Height="40" Width="100" RenderTransformOrigin="0.595,-6.36" HorizontalAlignment="Left" Margin="504,0,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button x:Name="DeletePlantButton" Content="Delete" Style="{StaticResource RoundedButtonStyle}" Width="100" Height="40" Margin="0,0,21,0" RenderTransformOrigin="0.83,0.487" HorizontalAlignment="Right" VerticalAlignment="Top" Click="DeletePlantButton_Click" Grid.Row="1"/>
     </Grid>
 
 </UserControl>
