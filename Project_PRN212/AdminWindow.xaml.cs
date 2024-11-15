@@ -46,7 +46,7 @@ namespace Project_PRN212
 		private void productManagement_Click(object sender, RoutedEventArgs e)
 		{
 			this.Hide();
-			new LaptopManagement(this).Show();
+			new PlantManagement(this).Show();
 		}
 	}
 }

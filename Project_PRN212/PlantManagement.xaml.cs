@@ -21,12 +21,12 @@ namespace Project_PRN212
 	/// <summary>
 	/// Interaction logic for LaptopManagement.xaml
 	/// </summary>
-	public partial class LaptopManagement : Window
+	public partial class PlantManagement : Window
 	{
 		private AdminWindow adminWindow;
 		private readonly IPlantService _laptopService;
 
-		public LaptopManagement(AdminWindow adminWindow)
+		public PlantManagement(AdminWindow adminWindow)
 		{
 			InitializeComponent();
 			this.adminWindow = adminWindow;

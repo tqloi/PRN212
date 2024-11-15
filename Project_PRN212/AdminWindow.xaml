@@ -23,6 +23,6 @@
         <Button x:Name="logoutBtn" Content="Log out" HorizontalAlignment="Left" Height="41" Margin="661,11,0,0" VerticalAlignment="Top" Width="86" FontSize="20" Background="#FFD1C3EC" Click="logoutBtn_Click" Grid.ColumnSpan="2" Grid.Column="1"  />
         <Button x:Name="userManagement" Content="USER MANAGEMENT" HorizontalAlignment="Left" Height="55" Margin="182,118,0,0" VerticalAlignment="Top" Width="400" FontSize="30" RenderTransformOrigin="0.502,0.034" Background="#FFD1C3EC" Click="userManagement_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
         <Button x:Name="orderManagement" Content="ORDER MANAGEMENT" HorizontalAlignment="Left" Height="55" Margin="182,237,0,0" VerticalAlignment="Top" Width="400" Background="#FFD1C3EC" FontSize="30" RenderTransformOrigin="0.502,0.034" Click="orderManagement_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <Button x:Name="productManagement" Content="LAPTOP MANAGEMENT" HorizontalAlignment="Left" Height="55" Margin="182,341,0,0" VerticalAlignment="Top" Width="400" Background="#FFD1C3EC" FontSize="30" RenderTransformOrigin="0.502,0.034" Click="productManagement_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button x:Name="productManagement" Content="PLANT MANAGEMENT" HorizontalAlignment="Left" Height="55" Margin="182,341,0,0" VerticalAlignment="Top" Width="400" Background="#FFD1C3EC" FontSize="30" RenderTransformOrigin="0.502,0.034" Click="productManagement_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
     </Grid>
 </Window>
